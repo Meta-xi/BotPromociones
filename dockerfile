@@ -14,5 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
 
 # Comando para ejecutar el bot
-ENTRYPOINT  ["python", "bot2.py"]
+CMD ["python", "bot2.py"]
 
