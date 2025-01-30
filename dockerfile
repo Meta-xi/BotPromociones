@@ -11,4 +11,4 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Especifica el comando para ejecutar el bot
-CMD ["python", "bot2.py"]
+CMD ["python", "-m", "bot2", "bot2"]
