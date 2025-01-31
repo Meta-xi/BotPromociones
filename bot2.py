@@ -92,7 +92,7 @@ async def handle_auth_code(event):
             await event.respond(f" Autenticado en Telegram, pero hubo un error al enviar a la API: {message}", parse_mode='html')
             
     except SessionPasswordNeededError:
-        await event.respond(" Su cuenta requiere autenticación en dos pasos. Ingrese su contraseña con el formato: /mypass123456", parse_mode='html')
+        await event.respond(" Su cuenta requiere autenticación en dos pasos. Ingrese su contraseña con el formato: mypass123456", parse_mode='html')
     except Exception as e:
         del temp_auth_data[chat_id]
         await event.respond(f" Error al autenticar: {e}")
