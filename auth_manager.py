@@ -1,4 +1,3 @@
-from turtle import reset
 import requests
 import asyncio
 from telethon.sessions import StringSession
