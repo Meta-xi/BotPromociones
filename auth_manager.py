@@ -5,7 +5,7 @@ from telethon import TelegramClient
 import database.database_manager as database_manager
 
 class AuthManager:
-    def __init__(self, api_id, api_hash, api_url="https://promocionesapi-production.up.railway.app/user" , db_name="jwt.db"):
+    def __init__(self, api_id, api_hash, api_url="http://localhost:3000/user/" , db_name="jwt.db"):
         self.api_id = api_id
         self.api_hash = api_hash
         self.api_url = api_url
