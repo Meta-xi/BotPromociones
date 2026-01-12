@@ -1,4 +1,3 @@
-from ast import pattern
 import asyncio
 from telethon import Button, TelegramClient, events
 import telethon
