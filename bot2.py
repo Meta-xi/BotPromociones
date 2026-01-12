@@ -74,10 +74,10 @@ Desconecta tu cuenta del bot de forma segura.
 
 🚀 <b>Para comenzar</b>, usa <code>/connect</code> seguido de tu número de teléfono.
 
-📱  <b>/createInstanceToWhatsapp</b>
+📱  <b>/createinstancetowhatsapp</b>
 Conecta tu cuenta de whatsapp al bot
 
-⚙️ <b>/BeginProcessToConfigWhatsapp</b> 
+⚙️ <b>/beginprocesstoconfigwhatsapp</b> 
 Inicia la configuración del reenvío de mensajes personalizados hacia whatsapp.
 """
     await event.respond(welcome_message, parse_mode='html')
