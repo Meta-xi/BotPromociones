@@ -1239,10 +1239,11 @@ async def getMessage(event):
     await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje.\n"
                         "Despues que termine presione el boton 🎯 He terminado")
     for i in res:
-        text = i.get('subject')
-        idx = i.get('id')
-        button = [Button.inline("✅ Agregar" , data = f"toggle_whatsapp:{idx}")]
-        await event.respond(text , buttons = button)
+        if i.get('subject'):
+            text = i.get('subject')
+            idx = i.get('id')
+            button = [Button.inline("✅ Agregar" , data = f"toggle_whatsapp:{idx}")]
+            await event.respond(text , buttons = button)
     button = [Button.inline("🎯 He terminado" , data = f"end_whatsapp")]
     await event.respond("Si ya terminó de seleccionar los grupos por favor presione el botón " , buttons = button)
 @bot.on(events.CallbackQuery(pattern = r'toggle_whatsapp(\S+)'))
