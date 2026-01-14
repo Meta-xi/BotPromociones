@@ -19,7 +19,7 @@ import threading '''
 
 api_id = 29618407
 api_hash = '9139cd380cc27d66802056cd6aa70317'
-bot_token = '8389089482:AAENVOtkvtMM6bJG_jRurVWswJNMRSq-oog'
+bot_token = '8344191766:AAHpG3TeBmmSWaVHY2OIv-E6EOzEtn8-a1c'
 criptobot_Token = '34426:AAb9Y4eTl5TAZMvzmTD1SlnS9L3Okouv8Hg'
 api_criptobot_url = 'https://testnet-pay.crypt.bot/'
 
