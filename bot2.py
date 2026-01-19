@@ -54,8 +54,6 @@ async def start(event):
 
 💡 Ejemplo: /connect +1234567890
 
-💡 Usa estos comandos para configurar el reenvío automático:
-
 ✈️ /telegram
 
 ♻️ /whatsapp
