@@ -180,24 +180,24 @@ async def handle_password(event):
 @bot.on(events.NewMessage(pattern = '/telegram'))
 async def teleramCommands(event):
     await event.respond("""
-                        ✈️ ¡Configura el reenvío en Telegram!
+✈️ ¡Configura el reenvío en Telegram!
 
-                        • Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
+• Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
 
-                        💬 Configura un nuevo mensaje:
-                        👉 /message_settings
+💬 Configura un nuevo mensaje:
+👉 /message_settings
 
-                        ✏️ Edita los mensajes ya creados:
-                        👉 /updateconfigs
+✏️ Edita los mensajes ya creados:
+👉 /updateconfigs
 
-                        🗑️ Elimina mensajes creados:
-                        👉 /deleteconfig
+🗑️ Elimina mensajes creados:
+👉 /deleteconfig
 
-                        ⏯️ Pausar los mensajes ya creados:
-                        👉 /pause
+⏯️ Pausar los mensajes ya creados:
+👉 /pause
 
-                        ▶️Play a los mensajes pausados:
-                        👉 /play  
+▶️Play a los mensajes pausados:
+👉 /play  
                         • /connect 👈 si el bot le requiere volver conectar su </br>cuenta
                         """)
 @bot.on(events.NewMessage(pattern = '/whatsapp'))
