@@ -48,6 +48,12 @@ async def start(event):
 ⚠️ Primero conecte su cuenta:
 • /connect 👈
 
+🔗 ¡Conecta tu cuenta de Telegram!
+
+• Envía el comando /connect seguido de tu número de Telegram +1234567890
+
+💡 Ejemplo: /connect +1234567890
+
 💡 Usa estos comandos para configurar el reenvío automático:
 
 ✈️ /telegram
