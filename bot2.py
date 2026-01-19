@@ -182,7 +182,7 @@ async def teleramCommands(event):
     await event.respond("""
                         ✈️ ¡Configura el reenvío en Telegram!
 
-                        • Utiliza los siguientes comandos para configurar o editar el Auto Reenvío a grupos.
+                        • Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
 
                         💬 Configura un nuevo mensaje:
                         👉 /message_settings
@@ -198,22 +198,22 @@ async def teleramCommands(event):
 
                         ▶️Play a los mensajes pausados:
                         👉 /play  
-                        • /connect 👈 si el bot le requiere volver conectar su cuenta
+                        • /connect 👈 si el bot le requiere volver conectar su </br>cuenta
                         """)
 @bot.on(events.NewMessage(pattern = '/whatsapp'))
 async def WhatsappCommands(event):
     await event.respond("""
                         ♻️ ¡Configura el reenvío en Wahtsapp!
 
-                        • Utiliza los siguientes comandos para configurar o editar el Auto Reenvío a grupos.
+                        • Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
 
                         🔗 Conecta una Nueva Cuenta de WahtsApp:
                         👉 /createinstancetowhatsapp
 
-                        💬 Configura un nuevo mensaje para reenviar a tus grupos:
+                        💬 Configura un nuevo mensaje para reenviar a tus </br>grupos:
                         👉 /beginprocesstoconfigwhatsapp 
                         
-                        💬 Configura un nuevo mensaje para reenviar a tus contactos:
+                        💬 Configura un nuevo mensaje para reenviar a tus </br>contactos:
                         👉 /(en espera...) 
 
                         ✏️ Edita los mensajes ya creados:
