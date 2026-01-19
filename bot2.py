@@ -83,24 +83,24 @@ async def start_connect(event):
 
             await event.respond(
                 """
-                📬 Envíe aquí el código recibido en Telegram en el siguiente formato:
+📬 Envíe aquí el código recibido en Telegram en el siguiente formato:
     
-                • Escribe la palabra <code>mycode</code> seguida del código recibido.
+• Escribe la palabra <code>mycode</code> seguida del código recibido.
 
-                💡 Ejemplo: mycode12345""",
+💡 Ejemplo: mycode12345""",
                 parse_mode='html'
             )
         except Exception as e:
             await event.respond(f" Error al conectar: {e}")
     else:
         await event.respond("""
-                            ‼️ Formato Incorrecto ‼️
+‼️ Formato Incorrecto ‼️
 
-                            ✅ Está es la forma correcta: 
+✅ Está es la forma correcta: 
 
-                            • Envía el comando /connect seguido de tu número de Telegram +1234567890
+• Envía el comando /connect seguido de tu número de Telegram +1234567890
 
-                            💡 Ejemplo: <code>/connect</code> +1234567890
+💡 Ejemplo: <code>/connect</code> +1234567890
                             """, parse_mode='html')
 
 @bot.on(events.NewMessage(pattern=r'^mycode\d+$'))
@@ -127,28 +127,29 @@ async def handle_auth_code(event):
         
         if result:
             await event.respond("""
-                                ✅ ¡Conectado! ✅
+✅ ¡Conectado! ✅
 
-                                • Ahora puedes usar todas nuestras funciones.
+• Ahora puedes usar todas nuestras funciones.
 
-                                💡 Usa estos comandos para configurar el reenvío automático:
+💡 Usa estos comandos para configurar el reenvío automático:
     
-                                ✈️ /telegram
+✈️ /telegram
 
-                                ♻️ /whatsapp
+♻️ /whatsapp
 
-                                🫂 /facebook (En espera)
+🫂 /facebook (En espera)
                                 """, parse_mode='html')
         else:
             await event.respond(f" Hubo un error en el proceso", parse_mode='html')
             
     except SessionPasswordNeededError:
-        await event.respond(""" 🔐 ¡Su cuenta tiene contraseña!
+        await event.respond(""" 
+🔐 ¡Su cuenta tiene contraseña!
 
-                                    • Envíe aquí la contraseña con la palabra mypass atrás sin espacios.
+• Envíe aquí la contraseña con la palabra mypass atrás sin espacios.
 
-                                    💡 Ejemplo: mypass12345""",
-                                    parse_mode='html')
+💡 Ejemplo: mypass12345""",
+parse_mode='html')
     except Exception as e:
         del temp_auth_data[chat_id]
         await event.respond(f" Error al autenticar: {e}")
@@ -182,7 +183,7 @@ async def teleramCommands(event):
     await event.respond("""
 ✈️ ¡Configura el reenvío en Telegram!
 
-• Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
+• Utiliza los siguientes comandos para configurar o editar el Auto Reenvío a grupos.
 
 💬 Configura un nuevo mensaje:
 👉 /message_settings
@@ -198,36 +199,36 @@ async def teleramCommands(event):
 
 ▶️Play a los mensajes pausados:
 👉 /play  
-                        • /connect 👈 si el bot le requiere volver conectar su </br>cuenta
-                        """)
+• /connect 👈 si el bot le requiere volver conectar su cuenta
+""")
 @bot.on(events.NewMessage(pattern = '/whatsapp'))
 async def WhatsappCommands(event):
     await event.respond("""
-                        ♻️ ¡Configura el reenvío en Wahtsapp!
+♻️ ¡Configura el reenvío en Wahtsapp!
 
-                        • Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
+• Utiliza los siguientes comandos para configurar o </br>editar el Auto Reenvío a grupos.
 
-                        🔗 Conecta una Nueva Cuenta de WahtsApp:
-                        👉 /createinstancetowhatsapp
+🔗 Conecta una Nueva Cuenta de WahtsApp:
+👉 /createinstancetowhatsapp
 
-                        💬 Configura un nuevo mensaje para reenviar a tus </br>grupos:
-                        👉 /beginprocesstoconfigwhatsapp 
+💬 Configura un nuevo mensaje para reenviar a tus </br>grupos:
+👉 /beginprocesstoconfigwhatsapp 
                         
-                        💬 Configura un nuevo mensaje para reenviar a tus </br>contactos:
-                        👉 /(en espera...) 
+💬 Configura un nuevo mensaje para reenviar a tus </br>contactos:
+👉 /(en espera...) 
 
-                        ✏️ Edita los mensajes ya creados:
-                        👉 /(en espera...)
+✏️ Edita los mensajes ya creados:
+👉 /(en espera...)
 
-                        🗑️ Elimina mensajes creados:
-                        👉 /(en espera...)
+🗑️ Elimina mensajes creados:
+👉 /(en espera...)
 
-                        ⏯️ Pausar todo:
-                        👉 /(en espera...)
+⏯️ Pausar todo:
+👉 /(en espera...)
 
-                        ▶️Play a todo:
-                        👉 /(en espera...)
-                        """)
+▶️Play a todo:
+👉 /(en espera...)
+""")
 @bot.on(events.NewMessage(pattern='/logout'))
 async def logout(event):
     chat_id = event.chat_id
@@ -360,11 +361,11 @@ async def finished_handler(event):
         await event.answer("No se encontro una configuracion activa. ", alert= True)
         return
     await event.respond("""
-                        ⏰ ¡Configura el Tiempo!
+⏰ ¡Configura el Tiempo!
 
-                        • Por favor envie el intervalo de reenvío en minutos, si quiere reenviar cada 1 hora debe colocarlo en minutos.
+• Por favor envie el intervalo de reenvío en minutos, si quiere reenviar cada 1 hora debe colocarlo en minutos.
 
-                        💡 Ejemplo: 60
+💡 Ejemplo: 60
                         """)
 @bot.on(events.NewMessage(func=lambda e: e.chat_id in user_config and e.text and e.text.isdigit()))
 async def recibir_intervalo(event):
@@ -394,23 +395,23 @@ async def recibir_intervalo(event):
         if response.status_code == 200:
             del user_config[chat_id]
             await event.respond(f"""
-                                ✅ ¡Mensaje Creado! ✅
+✅ ¡Mensaje Creado! ✅
 
-                                • Tu mensaje se comenzará a reenviar automáticamente dentro de {intervalo} minutos.
+• Tu mensaje se comenzará a reenviar automáticamente dentro de {intervalo} minutos.
 
-                                💡 Usa estos comandos para editar el reenvío automático:
+💡 Usa estos comandos para editar el reenvío automático:
                                     
-                                ✏️ Edita los mensajes ya creados:
-                                👉 /updateconfigs
+✏️ Edita los mensajes ya creados:
+👉 /updateconfigs
 
-                                🗑️ Elimina mensajes creados:
-                                👉 /deleteconfig
+🗑️ Elimina mensajes creados:
+👉 /deleteconfig
 
-                                ⏯️ Pausar los mensajes ya creados:
-                                👉 /pause
+⏯️ Pausar los mensajes ya creados:
+👉 /pause
 
-                                ▶️Play a los mensajes pausados:
-                                👉 /play 
+▶️Play a los mensajes pausados:
+👉 /play 
                                 """)
         else:
             await event.respond("❌ Error al enviar la configuración a la API.")
@@ -1200,12 +1201,12 @@ async def end_play_all(event):
 async def ConnectToWhatsapp(event):
     chat_id = event.chat_id
     text = """
-    📝 ¡Envía el Nombre!
+📝 ¡Envía el Nombre!
 
-    • Por favor, para conectarse a WhatsApp, escriba un nombre para identificarlo.
+• Por favor, para conectarse a WhatsApp, escriba un nombre para identificarlo.
 
-    💡 Ejemplo: Nombre22
-    """
+💡 Ejemplo: Nombre22
+"""
     if chat_id in instance_name_whatsapp:
         instance_name_whatsapp.pop(chat_id)
     instance_name_whatsapp[chat_id] = {
@@ -1264,15 +1265,15 @@ async def SendDataToApiForWhatsapp(event):
         
         await event.respond(
             """
-            ⚠️ ¡Escanee este código QR con su aplicación de (WhatsApp)!
+⚠️ ¡Escanee este código QR con su aplicación de (WhatsApp)!
 
-            1 - Dirigase a WahtsApp, luego Configuración.
+1 - Dirigase a WahtsApp, luego Configuración.
 
-            2 - Busque la sección “Vincular Dispositivo” la cual aparece en forma de código QR.
+2 - Busque la sección “Vincular Dispositivo” la cual aparece en forma de código QR.
 
-            3 - Luego “Escanee” este código “QR” desde su cuenta de Wahtsapp y espere hasta q se sincronice (puede tardar, espere)
+3 - Luego “Escanee” este código “QR” desde su cuenta de Wahtsapp y espere hasta q se sincronice (puede tardar, espere)
 
-            4 - Una vez sincronizada la cuenta regrese aquí y dele al siguiente comando: /hatsapp_group
+4 - Una vez sincronizada la cuenta regrese aquí y dele al siguiente comando: /hatsapp_group
             """,
             file=image_IO
         ) 
@@ -1292,9 +1293,9 @@ async def BeginProcess(event):
         "awaiting_message" : True
     }
     await event.respond("""
-                        📝 ¡Envia el mensaje!
+📝 ¡Envia el mensaje!
 
-                        • Puedes enviar, escribir o reenviar aquí (texto, imagen).Por favor solo envíe imagenes jpg.
+• Puedes enviar, escribir o reenviar aquí (texto, imagen).Por favor solo envíe imagenes jpg.
                         """);
 @bot.on(events.NewMessage(func = lambda e:(e.chat_id in whatsapp_config and whatsapp_config[e.chat_id].get("awaiting_message" , False) and (e.text or e.message.media) and not e.out)))
 async def getMessage(event):
@@ -1377,11 +1378,11 @@ async def GetIntervalToWhatsapp(event):
     if chat_id not in whatsapp_config:
         await event.respond("Ya la configuración finalizó")
     await event.respond("""
-                        ⏰ ¡Configura el Tiempo!
+⏰ ¡Configura el Tiempo!
 
-                        • Por favor envie el intervalo de reenvío en minutos, si quiere reenviar cada 1 hora debe colocarlo en minutos.
+• Por favor envie el intervalo de reenvío en minutos, si quiere reenviar cada 1 hora debe colocarlo en minutos.
 
-                        💡 Ejemplo: 60
+💡 Ejemplo: 60
                         """)
 @bot.on(events.NewMessage(func = lambda e: (e.chat_id in whatsapp_config and e.text and e.text.isdigit())))
 async def Finish_process_to_whatsapp(event):
@@ -1412,23 +1413,23 @@ async def Finish_process_to_whatsapp(event):
         return
     del whatsapp_config[chat_id]
     await event.respond(f"""
-                        ✅ ¡Mensaje Creado! ✅
+✅ ¡Mensaje Creado! ✅
 
-                        • Tu mensaje se comenzará a reenviar automáticamente dentro de {intervalo} minutos.
+• Tu mensaje se comenzará a reenviar automáticamente dentro de {intervalo} minutos.
 
-                        💡 Usa estos comandos para editar el reenvío automático:
+💡 Usa estos comandos para editar el reenvío automático:
 
-                        ✏️ Edita los mensajes ya creados:
-                        👉 /(en espera...)
+✏️ Edita los mensajes ya creados:
+👉 /(en espera...)
 
-                        🗑️ Elimina mensajes creados:
-                        👉 /(en espera...)
+🗑️ Elimina mensajes creados:
+👉 /(en espera...)
 
-                        ⏯️ Pausar los mensajes ya creados:
-                        👉 /(en espera...)
+⏯️ Pausar los mensajes ya creados:
+👉 /(en espera...)
 
-                        ▶️Play a los mensajes pausados:
-                        👉 /(en espera...)
+▶️Play a los mensajes pausados:
+👉 /(en espera...)
                         """)
     
     
