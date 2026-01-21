@@ -328,14 +328,38 @@ async def enviarMensajes(event):
         for dialog in dialogs if dialog.is_group or dialog.is_channel
     }
     user_config[chat_id]["grupos disponibles"] = lista_grupos
-    await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje.\n"
+    await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje o presione el botón Seleccionar todos los Grupos .\n"
                         "Despues que termine presione el boton 🎯 He terminado")
     for group_id , group_name in lista_grupos.items():
         texto = f"{group_name}"
         button = [Button.inline("✅ Agregar" , data=f"toggle:{group_id}")]
         await event.respond(texto , buttons = button)
+    button = [Button.inline("🌼 Seleccionar todos los grupos" ,data = f"select_all_groups_telegram")]
+    await event.respond("Si desea seleccionar todos los grupos ,presione el botón" , buttons = button)
     button = [Button.inline("🎯 He terminado" , data="finished")]
-    await event.respond("Si ya terminó de seleccionar los grupos por favor presione el botón ", buttons=button)    
+    await event.respond("Si ya terminó de seleccionar los grupos por favor presione el botón ", buttons=button)   
+@bot.on(events.CallbackQuery(pattern = f"select_all_groups_telegram")) 
+async def select_all_groups_telegram(event):
+    chat_id = event.chat_id
+    config = user_config.get(chat_id)
+    if not config:
+        await event.answer("La configuracion ya finalizó")
+        return
+    groups = config.get("grupos_disponibles" , {})
+    if not groups:
+        await event.answer("No hay grupos disponibles")
+        return
+    config["ids_destino"] = list(groups.keys())   
+    for group_id in config["ids_destino"]:
+        newText = "❌ Eliminar" 
+        try:
+            await event.edit(buttons = [[Button.inline(newText , data= f"toggle:{group_id}")]])
+        except Exception as e:
+            if "Content of the message was not modified" in str(e):
+                pass
+            else:
+                print("Error al editar el mensaje:" , e)
+        await event.answer("!Actualizado")
 @bot.on(events.CallbackQuery(pattern=r'toggle:(\S+)'))
 async def callback_toggle(event):
     chat_id = event.chat_id
@@ -1344,7 +1368,7 @@ async def getMessage(event):
         return
     print(res)
     whatsapp_config[chat_id]["available_groups"] = res
-    await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje.\n"
+    await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje o seleccione el boton Seleccionar todos los grupos.\n"
                         "Despues que termine presione el boton 🎯 He terminado")
     for i in res:
         if i.get('subject'):
@@ -1352,8 +1376,29 @@ async def getMessage(event):
             idx = i.get('id')
             button = [Button.inline("✅ Agregar" , data = f"toggle_whatsapp:{idx}")]
             await event.respond(text , buttons = button)
+    button = [Button.inline("🌼 Seleccionar todos los grupos" , data = f"select_all_goups_whatsapp")]
+    await event.respond("Si desea seleccionar todos los grupos ,por favor presione el botón" , buttons = button)
     button = [Button.inline("🎯 He terminado" , data = f"end_whatsapp")]
     await event.respond("Si ya terminó de seleccionar los grupos por favor presione el botón " , buttons = button)
+@bot.on(events.CallbackQuery(pattern = f'select_all_groups_whatsapp'))
+async def select_all_goups_whatsapp(event):
+    chat_id = event.chat_id
+    config = user_config.get(chat_id)
+    if not config:
+        await event.respond("La configuracion ya finalizó" , alert = True)
+        return
+    groups = config.get("available_groups" , {})
+    for group_id in groups.get('id'):
+        newText = "❌ Eliminar"
+        try:
+            await event.edit(buttons = [[Button.inline(newText , data = f"toggle_whatsapp:{group_id}")]])
+        except Exception as e:
+            if "Content of the message was not modified" in str(e):
+                pass
+            else:
+                print("Error al editar el mensaje")
+        await event.respond("!Actualizado")
+        
 @bot.on(events.CallbackQuery(pattern = r'toggle_whatsapp(\S+)'))
 async def AddAndQuitGroups(event):
     chat_id = event.chat_id
