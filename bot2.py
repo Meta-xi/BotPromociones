@@ -355,7 +355,7 @@ async def select_all_groups_telegram(event):
     config["ids_destino"] = list(groups.keys())   
     for group_id , msg_id in messages.items():
         try:
-            await event.edit_message(chat_id , msg_id , buttons = [[Button.inline("❌ Eliminar" , data = f"toggle:{group_id}")]])
+            await bot.edit_message(chat_id , msg_id , buttons = [[Button.inline("❌ Eliminar" , data = f"toggle:{group_id}")]])
         except Exception as e:
             pass
     await event.answer("¡Todos los grupos seleccionados!")
