@@ -327,7 +327,7 @@ async def enviarMensajes(event):
         str(dialog.id): dialog.title
         for dialog in dialogs if dialog.is_group or dialog.is_channel
     }
-    user_config[chat_id]["grupos disponibles"] = lista_grupos
+    user_config[chat_id]["grupos_disponibles"] = lista_grupos
     await event.respond("Por favor espere a que se muestren todos los grupos y presione el boton agregar en cada grupo hacia el cual desee reenviar el mensaje o presione el botón Seleccionar todos los Grupos .\n"
                         "Despues que termine presione el boton 🎯 He terminado")
     for group_id , group_name in lista_grupos.items():
