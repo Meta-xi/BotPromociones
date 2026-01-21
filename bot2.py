@@ -1392,6 +1392,7 @@ async def select_all_goups_whatsapp(event):
         return
     groups = config.get("available_groups" , {})
     messages = config.get("messages_groups" , {})
+    whatsapp_config[chat_id]["ids_destino"] = [g["id"] for g in groups]
     for group_id , msg_id in messages.items():
         try:
             await bot.edit_message(
